@@ -8,8 +8,8 @@ const MovieDetails = () => {
     console.log(movieId);
 
     useEffect(() => {
-      getMovieById(movieId),then(setMovie);
-    }, [movie]);
+      getMovieById(movieId).then(setMovie);
+    }, [movieId]);
 
     if (!movie) {
         return null;
