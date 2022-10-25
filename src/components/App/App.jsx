@@ -1,37 +1,26 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 // import styled from 'styled-components';
+import SharedLayout from ''
 import Home from '../../pages/Home';
 import Movies from '../../pages/Movies';
 import MovieDetails from '../../pages/MovieDetails';
+import Cast from '../Cast/Cast';
+import Reviews from '../Reviews/Reviews';
 import NotFound from '../../pages/NotFound';
-
-// const StyledLink = styled(NavLink)`
-//   color: black;
-
-//   &.active {
-//     color: orange;
-//   }
-// `;
 
 export const App = () => {
   return (
     <div>
-      <header>
-        <nav>
-          <Link to="/" end>
-            Home
-          </Link>
-          <Link to="/movies">Movies</Link>
-        </nav>
-      </header>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId" element={<MovieDetails />}>
-          {/* <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} /> */}
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

@@ -1,20 +1,18 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { Container, CardWrapper, ProductName } from './ProductList.styled';
 
-const MoviesList = ({ products }) => {
+const MoviesList = ({ movies }) => {
   return (
-    <>
-      {/* {products.map(product => (
-        <CardWrapper key={product.id}>
-          <Link to={`${product.id}`}>
-            <img src="https://via.placeholder.com/200x100" alt="" />
-            <ProductName>{product.name}</ProductName>
+    <ul>
+      {movies.map(movie => (
+        <li key={movie.id}>
+          <Link to={`${movie.id}`}>
+            {movie.name}
           </Link>
-        </CardWrapper>
-      ))} */}
-    </>
+        </li>
+      ))}
+    </ul>
   );
 };
-
 
 export default MoviesList;
