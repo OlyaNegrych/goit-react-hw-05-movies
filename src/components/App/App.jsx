@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 // import styled from 'styled-components';
-import SharedLayout from ''
+import SharedLayout from '../SharedLayout/SharedLayout'
 import Home from '../../pages/Home';
 import Movies from '../../pages/Movies';
 import MovieDetails from '../../pages/MovieDetails';
@@ -19,8 +19,8 @@ export const App = () => {
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

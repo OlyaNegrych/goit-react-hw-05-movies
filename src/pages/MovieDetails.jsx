@@ -1,46 +1,51 @@
 import { Outlet, useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getMovieById } from '../components/API';
+import { useLocation } from 'react-router-dom';
+import MovieDescription from 'components/MovieDescription/MovieDescription';
+import { getMovieById } from '../services/API';
+import { BsFillReplyFill } from 'react-icons/bs';
 
 const MovieDetails = () => {
-    const { movieId } = useParams();
-    const [movie, setMovie] = useState(null);
-    console.log(movieId);
+  const { movieId } = useParams();
+  const [movie, setMovie] = useState(null);
+  const location = useLocation();
 
-    useEffect(() => {
-      getMovieById(movieId).then(setMovie);
-    }, [movieId]);
-
-    if (!movie) {
-        return null;
+  useEffect(() => {
+    async function getMovieInfo() {
+      const movie = await getMovieById(movieId);
+      setMovie(movie);
     }
-    
+    getMovieInfo();
+  }, [movieId]);
+
+  if (!movie) {
+    return null;
+  }
+
   return (
     <main>
-      <button type="button">
-        <span>icon-arrow-left</span>
-        Go back
-      </button>
-      <img src={movie.html} alt={movie.name} />
       <div>
-        <h2>{movie.name}</h2>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus
-          sunt excepturi nesciunt iusto dignissimos.
-        </p>
+        <div>
+          <BsFillReplyFill /> <Link to={location.state.from}>Go back</Link>
+        </div>
+
+        <MovieDescription movie={movie} />
       </div>
-      <h3>Additional information</h3>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="review">Review</Link>
-        </li>
-      </ul>
+
+      <div>
+        <h3>Additional information</h3>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="review">Review</Link>
+          </li>
+        </ul>
+      </div>
       <Outlet />
     </main>
   );
 };
 
-export default MovieDetails ;
+export default MovieDetails;

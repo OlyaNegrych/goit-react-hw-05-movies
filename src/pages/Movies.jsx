@@ -1,36 +1,45 @@
-import { useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+// import { useSearchParams } from 'react-router-dom';
+import { searchMovies } from '../services/API';
+import SearchBar from 'components/SearchBar/SearchBar';
 import MoviesList from '../components/MoviesList/MoviesList';
-import { getMovies } from '../components/API';
 
 const Movies = () => {
-  const movies = getMovies();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const name = searchParams.get('name') ?? '';
+  const [searcQuery, setSearchQuery] = useState('');
+  const [movies, setMovies] = useState([]);
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const filter = searchParams.get('query') ?? '';
 
-  const handleChange = e => {
-    getMovies(e.target.value);
-    return setSearchParams({ name: e.target.value });
-  };
+ const handleSubmit = query => {
+   setSearchQuery(query);
+  //  setSearchParams(query !== '' ? { query } : {});
+ };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(e.target.value);
-    e.target.reset();
-  };
+  useEffect(() => {
+    // if (!searcQuery && !filter) {
+    //   return;
+    // }
 
-  //   const updateQueryString = name => {
-  //     const nextParams = name !== '' ? { name } : {};
-  //     setSearchParams(nextParams);
-  //   };
+  if (!searcQuery) {
+    return;
+  }
+
+    async function getMovies() {
+      try {
+        const newMovies = await searchMovies(searcQuery);
+        setMovies(newMovies);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getMovies();
+  }, [searcQuery]);
 
   return (
     <main>
-      <form>
-        <input type="text" value={name} onChange={handleChange} />
-        <button type="submit" onSubmit={handleSubmit}></button>
-      </form>
-      {/* {movies && <MoviesList movies={movies} />} */}
-      <MoviesList movies={movies} />
+      <SearchBar onSubmit={handleSubmit} />
+      {movies && <MoviesList movies={movies} />}
     </main>
   );
 };
