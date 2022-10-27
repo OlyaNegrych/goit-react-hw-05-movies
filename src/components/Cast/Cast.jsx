@@ -15,7 +15,7 @@ const Cast = () => {
         console.log(error);
       }
     }
-    getCast();
+    getCast(movieId);
   }, [movieId]);
 
   console.log(cast);
@@ -23,14 +23,16 @@ const Cast = () => {
   if (!cast) {
     return null;
   }
-
+ 
   return (
     <ul>
-      <li>
-        <img src="" alt="" />
-        <p>{ }</p>
-        <p>Character: {}</p>
-      </li>
+      {cast.map(actor => (
+        <li key={actor.id}>
+          <img src={actor.profile_path} alt="" />
+          <p>{actor.name}</p>
+          <p>Character: {actor.character}</p>
+        </li>
+      ))}
     </ul>
   );
 };
