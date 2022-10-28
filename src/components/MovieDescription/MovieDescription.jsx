@@ -4,7 +4,10 @@ const MovieDescription = ({ movie }) => {
 
   return (
     <div>
-      <img src={movie.backdrop_path} alt={movie.name} />
+      <img
+        src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+        alt={movie.name}
+      />
       <div>
         <h2>
           {movie.original_title}({movie.release_date.split('').splice(0, 4)})
