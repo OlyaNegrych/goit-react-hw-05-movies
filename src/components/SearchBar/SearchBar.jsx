@@ -23,7 +23,7 @@ const SearchBar = ({onSubmit}) => {
           value={search}
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Search</button>
       </form>
   );
 };

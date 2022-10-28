@@ -22,7 +22,7 @@ const MovieDetails = () => {
     return null;
   }
 
-  const backLink = location.state?.from ?? '/home';
+  const backLink = location.state?.from;
 
   return (
     <main>
