@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { SearchForm, SearchFormBtn, SearchFormBtnLabel, SearchFormInput } from '../SearchBar/SearchBar.styled';
+import Notiflix from 'notiflix';
 
 const SearchBar = ({onSubmit}) => {
   const [search, setSearch] = useState('');
@@ -8,23 +10,29 @@ const SearchBar = ({onSubmit}) => {
   };
 
   const handleSubmit = e => {
-      e.preventDefault();
+    e.preventDefault();
+    if (search.trim() === '') {
+      Notiflix.Report.warning('Enter word to find film');
+      return;
+    }
       onSubmit(search);
     setSearch('');
   };
 
   return (
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Enter movie title"
-          value={search}
-          onChange={handleChange}
-        />
-        <button type="submit">Search</button>
-      </form>
+    <SearchForm onSubmit={handleSubmit}>
+      <SearchFormInput
+        type="text"
+        autoComplete="off"
+        autoFocus
+        placeholder="Enter movie title"
+        value={search}
+        onChange={handleChange}
+      />
+      <SearchFormBtn type="submit">
+        <SearchFormBtnLabel>Search</SearchFormBtnLabel>
+      </SearchFormBtn>
+    </SearchForm>
   );
 };
 

@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { MoviesUl, MovieLi, NavItem } from '../MoviesList/MoviesList.styled';
 
 const MoviesList = ({ movies }) => {
   const location = useLocation();
   
   return (
-    <ul>
+    <MoviesUl>
       {movies.map(movie => (
-        <li key={movie.id}>
-          <Link to={`${movie.id}`} state={{ from: location }}>
+        <MovieLi key={movie.id}>
+          <NavItem to={`${movie.id}`} state={{ from: location }}>
             {movie.original_title}
-          </Link>
-        </li>
+          </NavItem>
+        </MovieLi>
       ))}
-    </ul>
+    </MoviesUl>
   );
 };
 

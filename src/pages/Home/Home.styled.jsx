@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const MoviesUl = styled.ul`
+export const MoviesList = styled.ul`
   list-style: none;
 `;
 
-export const MovieLi = styled.li`
+export const MovieItem = styled.li`
   margin-bottom: 10px;
 `;
 export const NavItem = styled(NavLink)`

@@ -1,24 +1,37 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Notiflix from 'notiflix';
+import { MagnifyingGlass } from 'react-loader-spinner';
 import { getReviewsById } from '../../services/API';
 
 const Reviews = () => {
   const [review, setReview] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function getReview(movieId) {
       try {
+        setIsLoading(true);
         const reviewList = await getReviewsById(movieId);
         setReview(reviewList);
       } catch (error) {
-        console.log(error);
+        Notiflix.Notify.failure(
+          'Sorry, something has gone wrong... Please try again.'
+        );
+      } finally {
+        setIsLoading(false);
       }
     }
     getReview(movieId);
-  }, [movieId]);
 
-  console.log(review);
+    return () => {
+      controller.abort();
+    };
+
+  }, [movieId]);
 
   if (!review) {
     return null;
@@ -26,6 +39,18 @@ const Reviews = () => {
 
   return (
     <ul>
+      {isLoading && (
+        <MagnifyingGlass
+          visible={true}
+          height="100"
+          width="100"
+          ariaLabel="MagnifyingGlass-loading"
+          wrapperStyle={{ display: 'flex', justifyContent: 'center' }}
+          wrapperClass="MagnifyingGlass-wrapper"
+          glassColor="#c0efff"
+          color="#e15b64"
+        />
+      )}
       {review.length === 0 && <p>We don't have any reviews for this movie.</p>}
       {review.map(item => (
         <li key={item.id}>

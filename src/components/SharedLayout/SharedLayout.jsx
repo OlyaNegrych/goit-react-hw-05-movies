@@ -1,6 +1,11 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { NavItem, Box } from '../SharedLayout/SharedLayout.styled';
+import { MagnifyingGlass } from 'react-loader-spinner';
+import {
+  NavItem,
+  Box,
+  StyledOutlet,
+} from '../SharedLayout/SharedLayout.styled';
 
 export const SharedLayout = () => {
   return (
@@ -13,9 +18,24 @@ export const SharedLayout = () => {
           <NavItem to="/movies">Movies</NavItem>
         </nav>
       </Box>
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
+      <StyledOutlet>
+        <Suspense
+          fallback={
+            <MagnifyingGlass
+              visible={true}
+              height="100"
+              width="100"
+              ariaLabel="MagnifyingGlass-loading"
+              wrapperStyle={{ display: 'flex', justifyContent: 'center' }}
+              wrapperClass="MagnifyingGlass-wrapper"
+              glassColor="#c0efff"
+              color="#e15b64"
+            />
+          }
+        >
+          <Outlet />
+        </Suspense>
+      </StyledOutlet>
     </>
   );
 };
