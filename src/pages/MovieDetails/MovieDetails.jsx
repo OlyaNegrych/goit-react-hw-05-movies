@@ -1,9 +1,10 @@
-import { Outlet, useParams, Link } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import Notiflix from 'notiflix';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import MovieDescription from 'components/MovieDescription/MovieDescription';
+import AdditionalInfo from '../../components/AdditionalInfo/AdditionalInfo';
 import { getMovieById } from '../../services/API';
 import { BsFillReplyFill } from 'react-icons/bs';
 import { BtnBack, BtnTextLink } from '../MovieDetails/MovieDetails.styled';
@@ -67,21 +68,7 @@ const MovieDetails = () => {
         <MovieDescription movie={movie} />
       </div>
 
-      <div>
-        <h3>Additional information</h3>
-        <ul>
-          <li>
-            <Link to="cast" state={{ from: backLink }}>
-              Cast
-            </Link>
-          </li>
-          <li>
-            <Link to="reviews" state={{ from: backLink }}>
-              Review
-            </Link>
-          </li>
-        </ul>
-      </div>
+      <AdditionalInfo/>
       <Suspense
         fallback={
           <MagnifyingGlass

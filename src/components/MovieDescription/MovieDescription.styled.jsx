@@ -1,14 +1,19 @@
 import styled from 'styled-components';
 
-export const Box = styled.div`
+export const DescriptionWrapper = styled.div`
   display: grid;
-  max-width: calc(100vw - 48px);
-  grid-template-columns: repeat(auto-fill, minmax(1fr 2fr));
-  grid-gap: 20px;
-`;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px auto);
+  `;
 
 export const Img = styled.img`
  display: block;
  max-width: 100%;
- hight: auto;
+ height: auto;
  `;
+
+ export const TextWrapprer = styled.div`
+   max-width: 600px;
+ `;
+

@@ -1,16 +1,20 @@
-import { Box, Img } from '../MovieDescription/MovieDescription.styled';
+import {
+  DescriptionWrapper,
+  Img,
+  TextWrapprer,
+} from '../MovieDescription/MovieDescription.styled';
 
 const MovieDescription = ({ movie }) => {
     const genres = movie.genres.map(genre => genre.name + ' ');
 
   return (
     <>
-      <Box>
+      <DescriptionWrapper>
         <Img
           src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
           alt={movie.name}
         />
-        <div>
+        <TextWrapprer>
           <h2>
             {movie.original_title}({movie.release_date.split('').splice(0, 4)})
           </h2>
@@ -19,8 +23,8 @@ const MovieDescription = ({ movie }) => {
           <p>{movie.overview}</p>
           <h3>Genres</h3>
           <p>{genres}</p>
-        </div>
-      </Box>
+        </TextWrapprer>
+      </DescriptionWrapper>
       <hr />
     </>
   );

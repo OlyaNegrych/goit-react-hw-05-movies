@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Notiflix from 'notiflix';
 import { MagnifyingGlass } from 'react-loader-spinner';
+import { ReviewItem } from '../Reviews/Reviews.styled';
 import { getReviewsById } from '../../services/API';
 
 const Reviews = () => {
@@ -53,10 +54,10 @@ const Reviews = () => {
       )}
       {review.length === 0 && <p>We don't have any reviews for this movie.</p>}
       {review.map(item => (
-        <li key={item.id}>
+        <ReviewItem key={item.id}>
           <h3>Author: {item.author}</h3>
           <p>{item.content}</p>
-        </li>
+        </ReviewItem>
       ))}
     </ul>
   );

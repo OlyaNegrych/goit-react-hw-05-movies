@@ -14,9 +14,9 @@ export const NavItem = styled(NavLink)`
     margin-right: 5px;
   }
   &.active {
-    background-color: #3f48de;
-    border: 3px solid black;
-    color: black;
+    background-color: #004dff;
+    border: 3px solid white;
+    color: white;
     font-weight: 700;
   }
 

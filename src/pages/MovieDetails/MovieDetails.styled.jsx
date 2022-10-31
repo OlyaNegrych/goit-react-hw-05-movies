@@ -6,9 +6,9 @@ export const BtnBack = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  padding: 5px;
+  padding: 4px;
   border-radius: 5px;
-  width: 150px;
+  width: 120px;
   height: 48px;
   border: 1px solid black;
   opacity: 0.6;
@@ -30,4 +30,10 @@ export const BtnTextLink = styled(NavLink)`
   :hover {
     color: blue;
   }
+`;
+
+export const AddInfoList = styled.ul`
+  list-style: none;
+  font-size: 20px;
+  line-height: 1.5;
 `;
