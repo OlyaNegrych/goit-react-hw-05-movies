@@ -25,7 +25,7 @@ const MovieDetails = () => {
         setMovie(movie);
       } catch (error) {
         Notiflix.Notify.failure(
-          'Sorry, something has gone wrong... Please try again.'
+          'Sorry, something has gone wrong... Please try again!'
         );
       } finally {
         setIsLoading(false);
