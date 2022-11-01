@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   DescriptionWrapper,
   Img,
@@ -5,7 +6,7 @@ import {
 } from '../MovieDescription/MovieDescription.styled';
 
 const MovieDescription = ({ movie }) => {
-    const genres = movie.genres.map(genre => genre.name + ' ');
+  const genres = movie.genres.map(genre => genre.name + ' ');
 
   return (
     <>
@@ -31,3 +32,12 @@ const MovieDescription = ({ movie }) => {
 };
 
 export default MovieDescription;
+
+MovieDescription.propTypes = {
+  contacts: PropTypes.exact({
+    release_date: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+  }),
+};

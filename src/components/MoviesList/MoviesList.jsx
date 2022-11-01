@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { MoviesUl, MovieLi, NavItem } from '../MoviesList/MoviesList.styled';
+// import PropTypes from 'prop-types';
 
 const MoviesList = ({ movies }) => {
   const location = useLocation();
@@ -18,3 +19,12 @@ const MoviesList = ({ movies }) => {
 };
 
 export default MoviesList;
+
+// MoviesList.propTypes = {
+//   movies: PropTypes.arrayOf(
+//     PropTypes.exact({
+//       id: PropTypes.number.isRequired,
+//       original_title: PropTypes.string.isRequired,
+//     })
+//   ),
+// };
